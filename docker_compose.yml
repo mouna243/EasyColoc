@@ -1,0 +1,51 @@
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    container_name: laravel_ap
+    user: "1000:1000"
+    volumes:
+      - "./src:/var/www/html"
+    depends_on:
+      - postgres
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_app
+    ports:
+      - "8080:80"
+    volumes:
+      - "./src:/var/www/html"
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgress
+    restart: always
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: mouna
+      POSTGRES_PASSWORD: mouna
+    ports:
+      - "5444:5432"
+    volumes:
+      - pgtables:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:snapshot
+    container_name: pgadminn
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "saoui_mouna@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "mouna"
+    ports:
+      - "5555:80"
+    depends_on:
+      - postgres
+
+volumes:
+  pgtables:
