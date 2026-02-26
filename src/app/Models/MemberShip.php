@@ -4,23 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Invitation extends Model
+class MemberShip extends Model
 {
     protected $fillable = [
-        "email",
-        "token",
         "owner_id",
         "member_id"
     ];
+
     public function owner()
     {
-        return $this->belongsTo(User::class, "owner_id");
+        return $this->hasOne(User::class, "owner_id");
     }
 
      public function member()
     {
-        return $this->belongsTo(User::class, "member_id");
+        return $this->hasMany(User::class, "member_id");
     }
 
 }
-

@@ -10,4 +10,9 @@ class Category extends Model
         "name",
         "colocation_id"
     ];
+    
+  public function colocation(){
+    return $this->hasOne(Colocation::class , "colocation_id");
+  }
+
 }

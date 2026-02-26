@@ -12,5 +12,14 @@ class Expence extends Model
         "colocation_id"
     ];
 
-    
+    public function category()
+    {
+        return $this->hasMany(Category::class, "categorie_id");
+    }
+    public function colocation()
+    {
+        return $this->belongsTo(Colocation::class, "colocation_id");
+    }
+
+
 }

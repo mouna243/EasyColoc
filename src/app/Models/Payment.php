@@ -11,4 +11,11 @@ class Payment extends Model
         "type_payment",
         "balance_id"
     ];
+
+
+    public function balance()
+    {
+        return $this->belongsTo(Balance::class, "balance_id");
+    }
+
 }
