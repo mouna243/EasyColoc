@@ -4,7 +4,7 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile
-    container_name: laravel_ap
+    container_name: laravel_app
     user: "1000:1000"
     volumes:
       - "./src:/var/www/html"
@@ -24,10 +24,10 @@ services:
 
   postgres:
     image: postgres:17-alpine
-    container_name: postgress
+    container_name: postgres
     restart: always
-    environment:
-      POSTGRES_DB: laravel
+    environment: 
+      POSTGRES_DB: easycoloc
       POSTGRES_USER: mouna
       POSTGRES_PASSWORD: mouna
     ports:
@@ -37,7 +37,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:snapshot
-    container_name: pgadminn
+    container_name: pgadmin
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: "saoui_mouna@gmail.com"

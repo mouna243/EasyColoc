@@ -12,13 +12,16 @@ return new class extends Migration {
     {
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
+            $table->integer("expence_id");
+            $table->foreign("expence_id")->references("id")->on("expences")->onDelete("cascade");
             $table->integer("colocation_id");
             $table->foreign("colocation_id")->references("id")->on("colocations")->onDelete("cascade");
             $table->integer("from_user_id");
-            $table->foreign("from_user_id")->references("id")->on("users")->onDelete("cascade");
+            $table->foreign("from_user_id")->references("id")->on("member_ships")->onDelete("cascade");
             $table->integer("to_user_id");
-            $table->foreign("to_user_id")->references("id")->on("users")->onDelete("cascade");
-            $table->integer("montant");
+            $table->foreign("to_user_id")->references("id")->on("member_ships")->onDelete("cascade");
+            $table->decimal("montant");
+            $table->enum("status",["pending" , "payed"])->default("pending");
             $table->timestamps();
         });
     }

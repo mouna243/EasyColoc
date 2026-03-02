@@ -7,18 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class MemberShip extends Model
 {
     protected $fillable = [
-        "owner_id",
-        "member_id"
+        "user_id",
+        "colocation_id",
+        "role",
+        "left_at"
     ];
 
-    public function owner()
+    public function user()
     {
-        return $this->hasOne(User::class, "owner_id");
+        return $this->belongsTo(User::class, "user_id");
     }
 
-     public function member()
+     public function colocation()
     {
-        return $this->hasMany(User::class, "member_id");
+        return $this->belongsTo(Colocation::class, "colocation_id");
     }
+
+
 
 }

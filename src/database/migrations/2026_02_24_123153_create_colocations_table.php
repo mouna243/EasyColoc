@@ -13,8 +13,7 @@ return new class extends Migration {
         Schema::create('colocations', function (Blueprint $table) {
             $table->id();
             $table->string("group_name");
-            $table->integer("owner_id");
-            $table->foreign("owner_id")->references("id")->on("users")->onDelete("cascade");
+            $table->enum("status",["active" , "deactive"])->default("active");
             $table->timestamps();
         });
     }

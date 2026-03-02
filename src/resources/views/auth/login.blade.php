@@ -219,19 +219,20 @@
 </head>
 <body>
   <div class="signin-card">
-    <h1>🌊 connexion</h1>
+    <h1>connexion</h1>
     <div class="sub">bleu profond · ombre liquide</div>
 
     <!-- formulaire de connexion -->
-    <form>
+    <form action="{{ route("loginCon") }}" method="POST">
+        @csrf
       <div class="input-group">
         <label for="email">📧 e-mail / identifiant</label>
-        <input type="email" id="email" placeholder="prenom.nom@deepsea.com" autocomplete="email">
+        <input type="email" id="email" name="email" placeholder="prenom.nom@deepsea.com" autocomplete="email">
       </div>
 
       <div class="input-group">
         <label for="password">🔒 mot de passe</label>
-        <input type="password" id="password" placeholder="············" autocomplete="current-password">
+        <input type="password" id="password" name="password" placeholder="············" autocomplete="current-password">
       </div>
 
       <div class="options">

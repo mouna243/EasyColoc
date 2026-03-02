@@ -9,18 +9,9 @@ class Invitation extends Model
     protected $fillable = [
         "email",
         "token",
-        "owner_id",
-        "member_id"
+        "used_at",
+        "colocation_id"
     ];
-    public function owner()
-    {
-        return $this->belongsTo(User::class, "owner_id");
-    }
-
-     public function member()
-    {
-        return $this->belongsTo(User::class, "member_id");
-    }
 
 }
 

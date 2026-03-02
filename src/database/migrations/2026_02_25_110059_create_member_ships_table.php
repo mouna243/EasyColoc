@@ -10,16 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('expences', function (Blueprint $table) {
+        Schema::create('member_ships', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->decimal("montant");
-            $table->integer("categorie_id");
-            $table->foreign("categorie_id")->references("id")->on("categories")->onDelete("cascade");
+            $table->integer("user_id");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->integer("colocation_id");
             $table->foreign("colocation_id")->references("id")->on("colocations")->onDelete("cascade");
-            $table->integer("creator_id");
-            $table->foreign("creator_id")->references("id")->on("member_ships")->onDelete("cascade");
+            $table->enum("role" , ["owner" , "member"]);
+            $table->timestamp('left_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('expences');
+        Schema::dropIfExists('member_ships');
     }
 };

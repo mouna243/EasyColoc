@@ -1,17 +1,18 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Foundation\Auth\User as Authenticatable ;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Authenticatable
 {
 
     protected $fillable = [
         "name",
         "email",
         "password",
-        "role"
+        "role",
+        "banned"
     ];
 
     public function colocation()
@@ -24,8 +25,11 @@ class User extends Model
         return $this->hasOne(MemberShip::class , "member_id");
     }
 
-    public function balance()
+    public function balances()
     {
         return $this->belongsTo(Balance::class );
     }
 }
+
+
+

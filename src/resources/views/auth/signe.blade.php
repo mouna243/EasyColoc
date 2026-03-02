@@ -194,42 +194,44 @@
 </head>
 <body>
   <div class="register-card">
-    <h1>⚓ inscription</h1>
-    <div class="sous-titre">créez votre profil · bleu abyssal</div>
+    <h1> inscription</h1>
+    <div class="sous-titre">créez votre profil · EasyColoc</div>
 
-    <form>
+    <form method="POST" action=" {{ route("signe") }}">
+
+        @csrf
       <!-- Champ NOM (prénom/nom) -->
       <div class="champ">
         <label for="nom">🧾 nom complet</label>
-        <input type="text" id="nom" placeholder="ex: Marie Aegir" autocomplete="name">
+        <input type="text" id="nom" name ="name" placeholder="ex: Marie Aegir" autocomplete="name">
       </div>
 
       <!-- Champ EMAIL -->
       <div class="champ">
         <label for="email">📧 adresse email</label>
-        <input type="email" id="email" placeholder="prenom@deep.com" autocomplete="email">
+        <input type="email" id="email" name ="email" placeholder="prenom@deep.com" autocomplete="email">
       </div>
 
       <!-- Champ PASSWORD -->
       <div class="champ">
         <label for="password">🔒 mot de passe</label>
-        <input type="password" id="password" placeholder="················" autocomplete="new-password">
+        <input type="password" id="password" name ="password" placeholder="················" autocomplete="new-password">
       </div>
 
       <!-- petite indication (facultatif, renforce le thème) -->
-      <div class="note-champs">⋆⫸ au moins 8 caractères, mer</div>
+      <div class="note-champs">⋆⫸ au moins 8 caractères</div>
 
       <!-- Bouton register -->
-      <button type="submit" class="register-btn"> ⚡ plonger ⚡ </button>
+      <button type="submit" class="register-btn">Crée un compte</button>
 
       <!-- Lien vers connexion si déjà compte -->
       <div class="footer-lien">
         <span>déjà un sillage ?</span>
-        <a href="#">connectez-vous</a>
+        <a href="/login">connectez-vous</a>
       </div>
     </form>
 
- 
+
   </div>
 </body>
 </html>
